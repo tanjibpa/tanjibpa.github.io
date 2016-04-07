@@ -17,8 +17,9 @@ permalink: /flask-intro-part-1
 #### পাইথন  
 
 সর্বপ্রথম আপনার পিসিতে পাইথন ইন্সটল করা থাকতে হবে। ডাউনলোড করে ইন্সটল করে নিন [এখান][download-python] থেকে। 
-আর যদি আপনি আমার মত লিনাক্স ব্যবহার করে থাকেন তাহলে আপনার এই ধাপটি নিয়ে চিন্তা না করলেও চলবে। ctrl+alt+t প্রেস করে টার্মিনাল ওপেন করুন, টাইপ করুন `python --version`। 
-```bash
+আর যদি আপনি আমার মত লিনাক্স ব্যবহার করে থাকেন তাহলে আপনার এই ধাপটি নিয়ে চিন্তা না করলেও চলবে। ctrl+alt+t প্রেস করে টার্মিনাল ওপেন করুন, টাইপ করুন `python --version`। 	
+
+```bash	
 $ python --version
 Python 2.7.10
 ```
@@ -34,10 +35,9 @@ Python 2.7.10
 
 
 **virtualenv ইন্সটল** 
-টার্মিনাল ওপেন করে টাইপ করুন `sudo pip install virtualenv` এবং enter চাপুন। 
+টার্মিনাল ওপেন করে টাইপ করুন `sudo pip install virtualenv` এবং enter চাপুন।  
 
-
-```bash
+```bash   
 $ virtualenv venv
 New python executable in venv/bin/python
 Installing setuptools, pip...done.
