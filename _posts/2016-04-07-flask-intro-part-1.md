@@ -36,6 +36,7 @@ Python 2.7.10
 **virtualenv ইন্সটল** 
 টার্মিনাল ওপেন করে টাইপ করুন `sudo pip install virtualenv` এবং enter চাপুন। 
 
+
 ```bash
 $ virtualenv venv
 New python executable in venv/bin/python
