@@ -24,7 +24,7 @@ permalink: /what-is-serialization
 
 পাইথন এর [pickle][python_pickle] মডিউল এর জন্য পারফেক্ট! [pickle][python_pickle] এর সাহায্যে পাইথন অবজেক্ট স্ট্রাকচারকে বাইনারী ডাটা তে serialize করা যায় এবং pickle দ্বারা serialize করা ডাটা কে আবার de-serialize করা যায়। person অবজেক্টকে উদাহরণ হিসেবে ইউজ করতে পারি আমরা। একই টার্মিনালেই আমরা পরবর্তী কোডগুলো লিখি। 
 
-	>>> import pickle      
+	>>> import pickle
 	>>> serialized_person = pickle.dumps(person)
 	>>> type(serialized_person)
 	>>> <class 'bytes'>

@@ -23,6 +23,8 @@ author_image: "/assets/images/tan.jpg"
 twitter_username: IkramulA
 github_username:  tanjibpa
 
+timezone: Asia/Dhaka
+
 # Build settings
 markdown: kramdown
 
