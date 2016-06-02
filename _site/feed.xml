@@ -6,9 +6,135 @@
 </description>
     <link>http://tanjibpa.github.io/</link>
     <atom:link href="http://tanjibpa.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 03 Jun 2016 00:48:03 +0600</pubDate>
-    <lastBuildDate>Fri, 03 Jun 2016 00:48:03 +0600</lastBuildDate>
+    <pubDate>Fri, 03 Jun 2016 03:26:16 +0600</pubDate>
+    <lastBuildDate>Fri, 03 Jun 2016 03:26:16 +0600</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        <title>Serialization কি ?</title>
+        <description>&lt;p&gt;&lt;img src=&quot;http://i.imgur.com/6sIPLQw.jpg&quot; alt=&quot;Imgur&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;প্রথমেই পাইথন টার্মিনাল ওপেন করি।  person নামের একটি empty dictionary তৈরি করি। এরপর একে একে name, age, favorite_color নামের key যোগ করি -&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; person = {}
+&amp;gt;&amp;gt;&amp;gt; person[&#39;name&#39;] = &#39;Jackie Chan&#39;
+&amp;gt;&amp;gt;&amp;gt; person[&#39;age&#39;] = 62
+&amp;gt;&amp;gt;&amp;gt; person[&#39;favorite_color&#39;] = (&#39;red&#39;, &#39;blue&#39;, &#39;black&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;এখন person অবজেক্ট এর টাইপ দেখতে -&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; type(person)
+&amp;lt;class &#39;dict&#39;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://docs.python.org/3/library/stdtypes.html#mapping-types-dict&quot;&gt;dict&lt;/a&gt; ডাটা টাইপ পাইথন প্রোগ্রামিং এর একটি কমন ডাটা টাইপ। এই ধরনের ডাটা টাইপ প্রোগ্রামে অথবা প্রোগ্রাম রানটাইমে মেমোরিতে সেইভ করে রাখার জন্য সুবিধাজনক। কিন্তু ধরুন আপনার প্রোগ্রাম শাট-ডাউন হওয়ার পর কিছু ডাটা সেইভ করে রাখা দরকার পড়লো, যাতে পরবর্তীবার প্রোগ্রাম চালু হলে তা ব্যবহার করা যায়।&lt;/p&gt;
+
+&lt;p&gt;পাইথন এর &lt;a href=&quot;https://docs.python.org/3/library/pickle.html&quot;&gt;pickle&lt;/a&gt; মডিউল এর জন্য পারফেক্ট! &lt;a href=&quot;https://docs.python.org/3/library/pickle.html&quot;&gt;pickle&lt;/a&gt; এর সাহায্যে পাইথন অবজেক্ট স্ট্রাকচারকে বাইনারী ডাটা তে serialize করা যায় এবং pickle দ্বারা serialize করা ডাটা কে আবার de-serialize করা যায়। person অবজেক্টকে উদাহরণ হিসেবে ইউজ করতে পারি আমরা। একই টার্মিনালেই আমরা পরবর্তী কোডগুলো লিখি।&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import pickle      
+&amp;gt;&amp;gt;&amp;gt; serialized_person = pickle.dumps(person)
+&amp;gt;&amp;gt;&amp;gt; type(serialized_person)
+&amp;gt;&amp;gt;&amp;gt; &amp;lt;class &#39;bytes&#39;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;এখানে pickle ব্যবহার করে person অবজেক্টকে serialize করে &lt;code class=&quot;highlighter-rouge&quot;&gt;bytes&lt;/code&gt; টাইপে কনভার্ট করে ফেললাম। 
+এখন যদি আমরা serialized_person ভ্যারিয়েবল এর ভ্যালু দেখি –&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; serialized_person
+
+b&#39;\x80\x03}q\x00(X\x04\x00\x00\x00nameq\x01X\x0b\x00\x00\x00Jackie Chanq\x02X\x0
+e\x00\x00\x00favorite_colorq\x03X\x03\x00\x00\x00redq\x04X\x04\x00\x00\x00blueq\
+x05X\x05\x00\x00\x00blackq\x06\x87q\x07X\x03\x00\x00\x00ageq\x08K&amp;gt;u.&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;এখন serialized_person এর ভ্যালুকে আমরা de-serialize করে আবার dict টাইপে নিতে পারবো।&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; deserialized_person = pickle.loads(serialized_person)
+
+&amp;gt;&amp;gt;&amp;gt; type(deserialized_person)
+&amp;lt;class &#39;dict&#39;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;দেখতে পাচ্ছি serialized_person এর ভ্যালুকে আবার dict টাইপে de-serialize করে ফেলেছি। 
+এখন আমরা যদি deserialized_person এর ভ্যালু দেখি-&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; deserialized_person
+
+{&#39;name&#39;: &#39;Jackie Chan&#39;, &#39;favorite_color&#39;: (&#39;red&#39;, &#39;blue&#39;, &#39;black&#39;), &#39;age&#39;: 62}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;জাস্ট প্লেইন সিম্পল পাইথন dictionary!&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;pickle ব্যবহার করার কারণে এটি pickling/unpickling নামেও পরিচিত।&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;pickle ব্যবহার করে serialization শুধুমাত্র পাইথন প্রোগ্রামের জন্য। কিন্তু ডাটা যদি নেটওয়ার্ক ব্যবহার করে সেন্ড করা হয় এবং ক্লায়েন্ট যদি পাইথন প্রোগ্রাম না হয়ে থাকে তাহলে pickle ব্যবহার করে এই ধরনের serialization কাজে আসবে না। 
+উদাহরণ হিসেবে চিন্তা করুন – ব্যাকএন্ড পাইথনে লেখা একটি REST-api আর ক্লায়েন্ট হতে পারে JavaScript, এন্ড্রয়েড ফোন (Java) ইত্যাদি। এক্ষেত্রে serialize করা &lt;code class=&quot;highlighter-rouge&quot;&gt;bytes&lt;/code&gt; টাইপ কনভার্ট করে একেক ক্লায়েন্টে ইউজ করা করা খুব পেইনফুল একটা কাজ হবে। 
+এক্ষেত্রে পাইথন এর বিল্টইন &lt;code class=&quot;highlighter-rouge&quot;&gt;json&lt;/code&gt; মডিউল ব্যবহার করা যায়। &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON&lt;/code&gt; বা &lt;code class=&quot;highlighter-rouge&quot;&gt;JavaScript Object Notation&lt;/code&gt; একটি serialization ফরম্যাট। নাম শুনে মনে হতে পারে এটি শুধুমাত্র JavaScript এ ব্যবহারের জন্য। কিন্তু বেশিরভাগ প্রোগ্রামিং ল্যাঙ্গুয়েজই &lt;code class=&quot;highlighter-rouge&quot;&gt;JSON&lt;/code&gt; সাপোর্ট করে।
+চলুন একটি উদাহরণ দেখি। প্রথমে myself নামের একটি dictionary ক্রিয়েট করি -&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; myself = {}
+&amp;gt;&amp;gt;&amp;gt; myself[&#39;name&#39;] = &#39;Ikramul Alam&#39;
+&amp;gt;&amp;gt;&amp;gt; myself[&#39;favorite_programming_lang&#39;] = &#39;python&#39;
+&amp;gt;&amp;gt;&amp;gt; myself[&#39;favorite_frameworks&#39;] = [&#39;flask&#39;, &#39;django&#39;, &#39;scrapy&#39;]
+&amp;gt;&amp;gt;&amp;gt; myself[&#39;hobbies&#39;] = [&#39;reading books&#39;, &#39;playing video games&#39;, &#39;watching movies&#39;]
+&amp;gt;&amp;gt;&amp;gt; myself[&#39;favorite_frameworks&#39;] = (&#39;flask&#39;, &#39;django&#39;, &#39;scrapy&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;এখন myself অবজেক্টটি কে json ফরম্যাটে কনভার্ট করতে আমরা পাইথন এর বিল্টইন &lt;code class=&quot;highlighter-rouge&quot;&gt;json&lt;/code&gt; মডিউল ব্যবহার করবো।&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import json
+&amp;gt;&amp;gt;&amp;gt; myself_json = json.dumps(myself)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;এখন আমরা যদি myself_json এর ভ্যালু দেখি -&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; myself_json
+&#39;{&quot;name&quot;: &quot;Ikramul Alam&quot;, &quot;favorite_frameworks&quot;: [&quot;flask&quot;, &quot;django&quot;, &quot;scrapy&quot;], 		&quot;favorite_programming_lang&quot;: &quot;python&quot;, &quot;hobbies&quot;: [&quot;reading books&quot;, &quot;playing pc 		games&quot;, &quot;watching movies&quot;]}&#39;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;myself&lt;/code&gt; এর ‘favorite_frameworks’ ভ্যালু যদিও &lt;a href=&quot;https://docs.python.org/3/library/stdtypes.html#tuples&quot;&gt;tuple&lt;/a&gt;, কিন্তু json কনভার্ট করে তা সাধারণ পাইথন &lt;a href=&quot;https://docs.python.org/3/library/stdtypes.html#lists&quot;&gt;list&lt;/a&gt; এর মত করে ফেলেছে। 
+এখন যদি json এ serialize করা অবজেক্ট এর টাইপ দেখি, তাহলে দেখবো তা &lt;code class=&quot;highlighter-rouge&quot;&gt;str&lt;/code&gt; টাইপ।&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; type(myself_json)
+&amp;lt;class &#39;str&#39;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;আমরা চাইলে serialize করা ডাটা একটি ফাইলে সেইভ করে রাখতে পারি -&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; with open(&#39;myself.json&#39;, &#39;w&#39;) as f:
+...     json.dump(myself, f)
+... 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;em&gt;sources:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.diveinto.org/python3/serializing.html&quot;&gt;Serializing Python Objects&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://chortle.ccsu.edu/java5/Notes/chap86/ch86_6.html&quot;&gt;Why Binary Files are Needed&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Tue, 03 May 2016 00:00:00 +0600</pubDate>
+        <link>http://tanjibpa.github.io/what-is-serialization</link>
+        <guid isPermaLink="true">http://tanjibpa.github.io/what-is-serialization</guid>
+        
+        
+      </item>
     
   </channel>
 </rss>
