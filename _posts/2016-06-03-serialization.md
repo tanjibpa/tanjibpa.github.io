@@ -27,7 +27,7 @@ permalink: /what-is-serialization
 	>>> import pickle      
 	>>> serialized_person = pickle.dumps(person)
 	>>> type(serialized_person)
-	>>> <class 'bytes'>
+	<class 'bytes'>
 
 এখানে pickle ব্যবহার করে person অবজেক্টকে serialize করে ```bytes``` টাইপে কনভার্ট করে ফেললাম। 
 এখন যদি আমরা serialized_person ভ্যারিয়েবল এর ভ্যালু দেখি -- 
