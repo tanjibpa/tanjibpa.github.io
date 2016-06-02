@@ -26,6 +26,8 @@ github_username:  tanjibpa
 # Build settings
 markdown: kramdown
 
+timezone: "Asia/Dhaka"
+
 kramdown:
   parse_block_html: true
 
